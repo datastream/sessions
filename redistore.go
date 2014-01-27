@@ -17,7 +17,7 @@ type RedisStore struct {
 	DefaultMaxAge int
 }
 
-func NewRediStore(network, address, password string) *RedisStore {
+func NewRedisStore(network, address, password string) *RedisStore {
 	con := func() (redis.Conn, error) {
 		c, err := redis.Dial(network, address)
 		if err != nil {
