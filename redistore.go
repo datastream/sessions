@@ -32,7 +32,9 @@ func NewRedisStore(network, address, password string) *RedisStore {
 		return c, err
 	}
 	return &RedisStore{
-		Pool: redis.NewPool(con, 3),
+		Pool:         redis.NewPool(con, 3),
+		exitChannel:  make(chan int),
+		queryChannel: make(chan *RedisQuery),
 		Cookie: &http.Cookie{
 			Path:   "/",
 			MaxAge: sessionExpire,
